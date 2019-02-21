@@ -11,9 +11,19 @@ export default class Cube extends BabylonBean {
         this.box.rotation.y = -0.4;
     }
 
+    setPosition(x,y,z){
+        this.box.position.x = x;
+        this.box.position.y = y;
+        this.box.position.z = z;
+    }
+
     animate() {
         this.box.rotation.x += 0.01;
         this.box.rotation.y += 0.01;
+    }
+
+    destruct() {
+        this.box.dispose();
     }
 
 

@@ -37,6 +37,11 @@ export default class BeanBuilder {
         return this;
     }
 
+    canvas(c){
+        this.params.canvas = c;
+        return this;
+    }
+
     build(){
         return new this.BeanClass(this.params);
     }

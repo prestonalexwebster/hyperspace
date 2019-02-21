@@ -1,7 +1,7 @@
 import GameFactory from './game-factory'
 
 
-export default class GameService {
+class GameService {
 
     constructor(){
         this.game = GameFactory.createGame();
@@ -20,3 +20,14 @@ export default class GameService {
     }
 
 }
+
+class GameDevService extends GameService {
+
+    constructor(){
+        super();
+        window.game = this.game;
+    }
+
+}
+
+export default process.env.NODE_ENV === 'production' ? GameService  : GameDevService;

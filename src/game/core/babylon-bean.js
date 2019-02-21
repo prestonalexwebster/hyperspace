@@ -5,7 +5,7 @@ function isSubClassOf(SubClass, SuperClass) {
 //proposal
 export default class BabylonBean {
 
-    constructor({engine, scene, getProps, createBean, disposeBean}) {
+    constructor({engine, scene, getProps, createBean, disposeBean, canvas}) {
 
         Object.defineProperty(this, 'scene', {
             get: () => scene,
@@ -25,6 +25,12 @@ export default class BabylonBean {
 
         Object.defineProperty(this, 'props', {
             get: getProps,
+            configurable: false,
+            enumerable: false
+        });
+
+        Object.defineProperty(this, 'canvas', {
+            get: () => canvas,
             configurable: false,
             enumerable: false
         });

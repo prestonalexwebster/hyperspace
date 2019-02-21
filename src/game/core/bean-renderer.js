@@ -3,10 +3,10 @@ import BeanContainer from "./bean-container";
 
 export default class BeanRenderer {
 
-    constructor(engine, scene){
+    constructor(engine, scene, canvas){
         this.engine = engine;
         this.scene = scene;
-        this.beanContainer = new BeanContainer(this.engine, this.scene);
+        this.beanContainer = new BeanContainer(this.engine, this.scene, canvas);
     }
 
 

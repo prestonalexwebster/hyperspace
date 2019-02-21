@@ -4,12 +4,13 @@ import BeanBuilder from "./bean-builder";
 export default class BeanContainer {
 
 
-    constructor(engine, scene){
+    constructor(engine, scene, canvas){
         this.engine = engine;
         this.scene = scene;
         this.beanBuilder = new BeanBuilder()
             .engine(engine)
             .scene(scene)
+            .canvas(canvas)
             .createBean(this.createBean)
             .disposeBean(this.disposeBean);
     }

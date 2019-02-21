@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babylonjs": "^3.3.0",
+    "babylonjs-loaders": "^3.3.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
