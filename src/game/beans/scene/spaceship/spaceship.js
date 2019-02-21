@@ -13,6 +13,11 @@ export default class Spaceship extends BabylonBean {
         return this.meshes[0].position;
     }
 
+    speed = 0;
+
+    setSpeed(speed){
+        this.speed = speed;
+    }
 
     getParent(){
         return this.meshes[0];
@@ -21,7 +26,7 @@ export default class Spaceship extends BabylonBean {
 
     moveForward(){
         if(this.isProcessing()) return;
-        this.meshes[0].translate(this.direction, 0.1, Space.LOCAL);
+        this.meshes[0].translate(this.direction, this.speed/10, Space.LOCAL);
     }
 
     moveTo(vector, distance){

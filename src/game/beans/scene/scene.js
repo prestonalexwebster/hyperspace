@@ -9,7 +9,7 @@ export default class Scene extends BabylonBean {
 
     moveSpaceship = e => {
         if(e.key === ' '){
-            this.spaceship.moveForward();
+            this.spaceship.setSpeed(Math.min(3, this.spaceship.speed + 1));
         } else if(e.key === 'a') {
             this.spaceship.rotateLeft(Math.PI/40);
         }else if(e.key === 'd') {
@@ -45,7 +45,10 @@ export default class Scene extends BabylonBean {
     }
 
     animate(){
-
+        if(!this.spaceship.isProcessing()){
+            this.spaceship.setSpeed(Math.max(0, this.spaceship.speed -0.01));
+            this.spaceship.moveForward();
+        }
     }
 
 }
