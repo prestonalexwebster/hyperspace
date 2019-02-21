@@ -13,22 +13,37 @@ export default class Spaceship extends BabylonBean {
         return this.meshes[0].position;
     }
 
+
+    getParent(){
+        return this.meshes[0];
+    }
+
+
     moveForward(){
         if(this.isProcessing()) return;
-        /*this.meshes.forEach(mesh => {
-            mesh.translate(this.direction, 0.2, Space.LOCAL);//todo: fix move forward OR rotation behavior
-        });*/
-        this.meshes[0].translate(this.direction, 0.2, Space.LOCAL);
+        this.meshes[0].translate(this.direction, 0.1, Space.LOCAL);
+    }
+
+    moveTo(vector, distance){
+        this.meshes[0].translate(this.direction, distance, Space.WORLD);
+    }
+
+    rotateTop(delta){
+        this.meshes[0].addRotation(-delta,0, 0);
+    }
+
+    rotateBottom(delta){
+        this.meshes[0].addRotation(delta,0, 0);
     }
 
     rotateLeft(delta){
         //this.meshes.forEach(m => m.addRotation(0,delta, 0));
-        this.meshes[0].addRotation(0,delta, 0);
+        this.meshes[0].addRotation(0,-delta, 0);
     }
 
     rotateRight(delta){
        //this.meshes.forEach(m => m.addRotation(0,-delta, 0));
-        this.meshes[0].addRotation(0,-delta, 0);
+        this.meshes[0].addRotation(0,delta, 0);
     }
 
 
@@ -39,7 +54,7 @@ export default class Spaceship extends BabylonBean {
 
     onLoad(callback){
         if(!this.isProcessing()){
-            callback(this.meshes);
+            callback();
         }
         this.callbacks.add(callback);
     }
@@ -54,7 +69,7 @@ export default class Spaceship extends BabylonBean {
             }
             this.processing = false;
             for(const callback of this.callbacks){
-                callback(this.meshes);
+                callback();
             }
             this.callbacks.clear();
         };
