@@ -14,7 +14,7 @@ export default class Camera extends BabylonBean {
     }
 
     setTarget(target){
-        this.camera.lockedTarget = target;
+        this.camera.lockedTarget = target; //todo: lock camera on space ship normally!
     }
 
 }

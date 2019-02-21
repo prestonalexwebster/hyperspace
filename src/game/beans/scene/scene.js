@@ -27,7 +27,7 @@ export default class Scene extends BabylonBean {
         this.spaceship = this.addToScene(Spaceship);
         this.spaceship.onLoad(meshes => this.camera.setTarget(meshes[0]));
 
-        document.addEventListener('keypress', this.moveSpaceship);
+        document.addEventListener('keypress', this.moveSpaceship); //todo: move controls to specific place
 
     }
 

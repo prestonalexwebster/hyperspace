@@ -12,7 +12,7 @@ export default class Spaceship extends BabylonBean {
     moveForward(){
         if(this.isProcessing()) return;
         this.meshes.forEach(mesh => {
-            mesh.translate(this.direction, 0.2, Space.LOCAL);
+            mesh.translate(this.direction, 0.2, Space.LOCAL);//todo: fix move forward OR rotation behavior
         });
     }
 
