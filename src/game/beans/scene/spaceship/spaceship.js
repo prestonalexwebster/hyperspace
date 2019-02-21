@@ -9,19 +9,26 @@ export default class Spaceship extends BabylonBean {
 
     callbacks = new Set();
 
+    getPosition(){
+        return this.meshes[0].position;
+    }
+
     moveForward(){
         if(this.isProcessing()) return;
-        this.meshes.forEach(mesh => {
+        /*this.meshes.forEach(mesh => {
             mesh.translate(this.direction, 0.2, Space.LOCAL);//todo: fix move forward OR rotation behavior
-        });
+        });*/
+        this.meshes[0].translate(this.direction, 0.2, Space.LOCAL);
     }
 
     rotateLeft(delta){
-        this.meshes.forEach(m => m.addRotation(0,delta, 0));
+        //this.meshes.forEach(m => m.addRotation(0,delta, 0));
+        this.meshes[0].addRotation(0,delta, 0);
     }
 
     rotateRight(delta){
-        this.meshes.forEach(m => m.addRotation(0,-delta, 0));
+       //this.meshes.forEach(m => m.addRotation(0,-delta, 0));
+        this.meshes[0].addRotation(0,-delta, 0);
     }
 
 
@@ -42,8 +49,10 @@ export default class Spaceship extends BabylonBean {
         const meshTask = assetsManager.addMeshTask("ship task", "", "/resources/assets/shaceship/", "spaceship.babylon");
         meshTask.onSuccess = task => {
             this.meshes = task.loadedMeshes;
+            for(let i = 1; i < this.meshes.length; ++i){
+                this.meshes[i].parent = this.meshes[0];
+            }
             this.processing = false;
-            this.moveTo(0,0,0);
             for(const callback of this.callbacks){
                 callback(this.meshes);
             }
